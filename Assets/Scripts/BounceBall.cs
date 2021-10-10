@@ -11,6 +11,8 @@ public class BounceBall : MonoBehaviour,IElastic
 {
     private static int _pos, _normal, _time;
     private MeshRenderer mesh;
+    public float range = 0.6f;
+    public float intense = 0.2f;
 
     static BounceBall()
     {
@@ -29,11 +31,11 @@ public class BounceBall : MonoBehaviour,IElastic
     public void OnElastic(RaycastHit hit)
     {
         Vector4 hitPos = transform.InverseTransformPoint(hit.point);
-        hitPos.w = 0.6f;
+        hitPos.w = range;
         mesh.material.SetVector(_pos, hitPos);
 
         Vector4 normalDirect = transform.InverseTransformDirection(hit.normal.normalized);
-        normalDirect.w = 0.2f;
+        normalDirect.w = intense;
         mesh.material.SetVector(_normal, normalDirect);
         mesh.material.SetFloat(_time, Time.time);
     }

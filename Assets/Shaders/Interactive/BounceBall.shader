@@ -53,7 +53,9 @@
 
                 if(t > 0 && t<_Duration)
                 {
+                    // 幅度随距离大小而减小
                     float r = 1 - saturate(length(v.vertex.xyz- _Position.xyz)/_Position.w);
+                    // 幅度随时间推移而减小
                     float l = 1 - t/_Duration;
                     v.vertex.xyz += r*l*_Normal.xyz*_Normal.w * cos(t * _Frequency);
                 }
